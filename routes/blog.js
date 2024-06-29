@@ -60,4 +60,19 @@ router.post('/comment/:blogId', async(req,res)=>{
   return res.redirect(`/blog/${req.params.blogId}`);
 });
 
+//handle delete blog
+router.post('/delete/:id', async (req, res) => {
+  if (!req.user) { 
+    return res.redirect('/user/signin');
+  }
+
+  try {
+    await Blog.deleteOne({ _id: req.params.id, createdBy: req.user._id });
+    res.redirect('/');
+  } catch (err) {
+    console.error("Failed to delete the blog post:", err);
+    res.status(500).send("Failed to delete the blog post.");
+  }
+});
+
 export { router as blogRoutes };

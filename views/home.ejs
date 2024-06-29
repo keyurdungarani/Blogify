@@ -18,6 +18,10 @@
                         <div class="card-body">
                           <h5 class="card-title"><%= element.title %></h5>
                           <a href="/blog/<%= element._id %>" class="btn btn-primary">Read More</a>
+                          <!-- Form for deleting the blog post -->
+                      <form action="/blog/delete/<%= element._id %>" method="POST" style="display: inline;">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
                         </div>
                     </div>
                 </div>

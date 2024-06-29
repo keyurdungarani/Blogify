@@ -30,8 +30,10 @@ app.use('/user', userRouter);
 app.use('/blog', blogRoutes); 
 
 app.get('/', async (req,res)=> {
-  console.log("🚀 ~ app.get ~ req.user:", req.user);
+  // console.log("🚀 ~ app.get ~ req.user:", req.user);
   if(!req.user) { return res.redirect('/user/signin')};
+
+  //show logged in user's bloga
   const allBlog = await Blog.find({createdBy: req.user._id});
   console.log("🚀 ~ app.get ~ allBlog:", allBlog);
   
